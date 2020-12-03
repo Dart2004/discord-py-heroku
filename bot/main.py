@@ -280,7 +280,7 @@ async def removerole(ctx, userid, *, rolename):
 async def kick(ctx, *, user):
 	if ctx.author.guild_permissions.administrator:
 	  user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
-	  member=await client.get_user(user)
+	  member=client.get_user(user)
 	  await member.send("You got kicked in " + ctx.guild.name)
 	  await client.http.kick_user(ctx.guild.id,user)
 	else:
@@ -291,7 +291,7 @@ async def kick(ctx, *, user):
 async def ban(ctx, *, username):
 	if ctx.author.guild_permissions.administrator:
 		user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
-		member=await client.get_user(user)
+		member=client.get_user(user)
 		await member.send("You got banned in " + ctx.guild.name)
 		await client.http.ban_user(ctx.guild.id,user)
 	else:
@@ -734,7 +734,7 @@ async def reactwith(ctx,messageid,emojiname):
       await client.http.add_reaction(ctx.channel.id,messageid,str(emoji).replace("<","").replace(">",""))
 @client.command(description="Info about an user")
 async def info(ctx, *, user):
-  userg=await client.get_user(int(user.replace("!","").replace("@","").replace("<","").replace(">","")))
+  userg=client.get_user(int(user.replace("!","").replace("@","").replace("<","").replace(">","")))
   user=userg
   info = "User: " + user.name
   info += "\nID: " + str(user.id)
