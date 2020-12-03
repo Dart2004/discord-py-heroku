@@ -734,7 +734,7 @@ async def reactwith(ctx,messageid,emojiname):
       await client.http.add_reaction(ctx.channel.id,messageid,str(emoji).replace("<","").replace(">",""))
 @client.command(description="Info about an user")
 async def info(ctx, *, user):
-  userg=client.get_user(int(user.replace("!","").replace("@","").replace("<","").replace(">","")))
+  userg=ctx.guild.get_member(int(user.replace("!","").replace("@","").replace("<","").replace(">","")))
   user=userg
   info = "User: " + user.name
   info += "\nID: " + str(user.id)
