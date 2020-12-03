@@ -1,6 +1,6 @@
 import os
 
-from PIL import Image
+from PIL import Image, ImageEnhance
 import discord.ext.commands as importcommands
 import discord
 import random
@@ -24,12 +24,20 @@ helpmessages = {
     ],
     "info": ["***__Info__***", "info", "myinvites", "invitesby", "rank"],
     "fun": [
-        "***__Fun__***","edit","invert","red","green","black","Mono","blue", "rand", "randint", "embed", "react",
+        "***__Fun__***","edit","invert","red","green","black","mono","blue","contrast", "rand", "randint", "embed", "react",
         "reactones", "reactto", "sendreact","music", "sendanimoji","search","text"
     ],
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
     "about": ["***__About me__***", "h", "invite", "join", "count"]
 }
+@client.command()
+async def contrast(ctx,number, url):
+  r = requests.get(url, allow_redirects=True)
+  open('clipped.png', 'wb').write(r.content)
+  img=Image.open("clipped.png")
+  img_invert=ImageEnhance.Contrast(image).enhance(int(number))
+  img_invert.save("converted.png")
+  await ctx.send(file=discord.File("converted.png"))
 @client.command()
 async def invert(ctx, url):
   r = requests.get(url, allow_redirects=True)
