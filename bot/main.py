@@ -738,9 +738,7 @@ async def info(ctx, *, user):
   user=userg
   info = "User: " + user.name
   info += "\nID: " + str(user.id)
-  info += "\nRoles"
-  for role in user.roles:
-  	info += "\n" + role.name
+  info += "\nCan't fetch roles"
   info += "\n=========="
   embed = discord.Embed(title="Userinfo", description=info, color=123456)
   await ctx.channel.send(embed=embed)
