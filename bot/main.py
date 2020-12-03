@@ -24,7 +24,7 @@ helpmessages = {
     ],
     "info": ["***__Info__***", "info", "myinvites", "invitesby", "rank"],
     "fun": [
-        "***__Fun__***","edit","invert", "rand", "randint", "embed", "react",
+        "***__Fun__***","edit","invert","red","green","blue", "rand", "randint", "embed", "react",
         "reactones", "reactto", "sendreact","music", "sendanimoji","search","text"
     ],
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
@@ -32,7 +32,6 @@ helpmessages = {
 }
 @client.command()
 async def invert(ctx, url):
-  import requests
   r = requests.get(url, allow_redirects=True)
   open('clipped.png', 'wb').write(r.content)
   img=Image.open("clipped.png")
@@ -40,6 +39,30 @@ async def invert(ctx, url):
   img_invert.save("converted.png")
   await ctx.send(file=discord.File("converted.png"))
 
+@client.command()
+async def red(ctx,url):
+  r = requests.get(url, allow_redirects=True)
+  open('clipped.png', 'wb').write(r.content)
+  img=Image.open("clipped.png")
+  r,g,b=img.split()
+  r.save("converted.png")
+  await ctx.send(file=discord.File("converted.png"))
+@client.command()
+async def green(ctx,url):
+  r = requests.get(url, allow_redirects=True)
+  open('clipped.png', 'wb').write(r.content)
+  img=Image.open("clipped.png")
+  r,g,b=img.split()
+  g.save("converted.png")
+  await ctx.send(file=discord.File("converted.png"))
+@client.command()
+async def blue(ctx,url):
+  r = requests.get(url, allow_redirects=True)
+  open('clipped.png', 'wb').write(r.content)
+  img=Image.open("clipped.png")
+  r,g,b=img.split()
+  b.save("converted.png")
+  await ctx.send(file=discord.File("converted.png"))
 def output(url):
   response = requests.post(
       'https://de.clippingmagic.com/api/v1/images',
@@ -746,3 +769,4 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 if __name__ == "__main__":
     client.run(TOKEN)
+
