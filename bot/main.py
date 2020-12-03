@@ -735,8 +735,7 @@ async def reactwith(ctx,messageid,emojiname):
 @client.command(description="Info about an user")
 async def info(ctx, *, user):
   userg=await ctx.guild.get_member(int(user.replace("!","").replace("@","").replace("<","").replace(">","")))
-  if member.name.lower() == username.lower():
-  		user = member
+  user=userg
   info = "User: " + user.name
   info += "\nID: " + str(user.id)
   info += "\nRoles"
