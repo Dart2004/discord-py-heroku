@@ -35,7 +35,7 @@ async def contrast(ctx,number, url):
   r = requests.get(url, allow_redirects=True)
   open('clipped.png', 'wb').write(r.content)
   img=Image.open("clipped.png")
-  img_invert=ImageEnhance.Contrast(image).enhance(int(number))
+  img_invert=ImageEnhance.Contrast(img).enhance(int(number))
   img_invert.save("converted.png")
   await ctx.send(file=discord.File("converted.png"))
 @client.command()
