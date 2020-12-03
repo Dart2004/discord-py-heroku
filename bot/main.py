@@ -24,7 +24,7 @@ helpmessages = {
     ],
     "info": ["***__Info__***", "info", "myinvites", "invitesby", "rank"],
     "fun": [
-        "***__Fun__***","edit","invert","red","green","blue", "rand", "randint", "embed", "react",
+        "***__Fun__***","edit","invert","red","green","black","Mono","blue", "rand", "randint", "embed", "react",
         "reactones", "reactto", "sendreact","music", "sendanimoji","search","text"
     ],
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
@@ -38,7 +38,22 @@ async def invert(ctx, url):
   img_invert = img.point(lambda x: 255-x)
   img_invert.save("converted.png")
   await ctx.send(file=discord.File("converted.png"))
-
+@client.command()
+async def mono(ctx, url):
+  r = requests.get(url, allow_redirects=True)
+  open('clipped.png', 'wb').write(r.content)
+  img=Image.open("clipped.png")
+  img_invert = img.convert("L")
+  img_invert.save("converted.png")
+  await ctx.send(file=discord.File("converted.png"))
+@client.command()
+async def black(ctx, url):
+  r = requests.get(url, allow_redirects=True)
+  open('clipped.png', 'wb').write(r.content)
+  img=Image.open("clipped.png")
+  img_invert = img.convert("1")
+  img_invert.save("converted.png")
+  await ctx.send(file=discord.File("converted.png"))
 @client.command()
 async def red(ctx,url):
   r = requests.get(url, allow_redirects=True)
