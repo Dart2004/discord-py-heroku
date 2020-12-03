@@ -645,9 +645,9 @@ async def on_message(msg):
 		if str(emoji) in msg.content:
 		  names.append(emoji.name)
 		  continue
-                msg.content=msg.content.replace("<:","abgtegt")
+		msg.content=msg.content.replace("<:","abgtegt")
 		msg.content = msg.content.replace(":" + str(emoji.name.lower()) +":",str(emoji))
-                msg.content=msg.content.replace("abgtegt","<:")
+		msg.content=msg.content.replace("abgtegt","<:")
 		names.append(emoji.name)
 	print(message, msg.content)
 	if msg.content == message:
