@@ -277,12 +277,12 @@ async def removerole(ctx, userid, *, rolename):
 
 
 @client.command(description="Kick a user")
-async def kick(ctx, *, username):
+async def kick(ctx, *, user):
 	if ctx.author.guild_permissions.administrator:
-		for member in ctx.guild.members:
-			if member.name == username:
-				await member.send("You got kicked in " + ctx.guild.name)
-				await member.kick()
+	  user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
+		member=client.get_user(user))
+	  await member.send("You got kicked in " + ctx.guild.name)
+		await client.http.kick_user(ctx.guild.id,user)
 	else:
 		await ctx.send("Only admin")
 
@@ -290,10 +290,10 @@ async def kick(ctx, *, username):
 @client.command(description="Ban someone")
 async def ban(ctx, *, username):
 	if ctx.author.guild_permissions.administrator:
-		for member in ctx.guild.members:
-			if member.name == username:
-				await member.send("You got banned in " + ctx.guild.name)
-				await member.ban()
+		user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
+		member=client.get_user(user))
+	  await member.send("You got banned in " + ctx.guild.name)
+		await client.http.ban_user(ctx.guild.id,user)
 	else:
 		await ctx.send("Only admin")
 
