@@ -282,7 +282,7 @@ async def kick(ctx, *, user):
 	  user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
 	  member=client.get_user(user)
 	  await member.send("You got kicked in " + ctx.guild.name)
-	  await guild.kick(user)
+	  await ctx.guild.kick(user)
 	else:
 		await ctx.send("Only admin")
 
@@ -293,7 +293,7 @@ async def ban(ctx, *, username):
 		user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
 		member=client.get_user(user)
 		await member.send("You got banned in " + ctx.guild.name)
-		await guild.ban(user)
+		await ctx.guild.ban(user)
 	else:
 		await ctx.send("Only admin")
 
