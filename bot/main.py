@@ -31,7 +31,7 @@ helpmessages = {
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
     "about": ["***__About me__***", "h", "invite", "join", "count"]
 }
-@client.command
+@client.command()
 async def add(ctx,url):
   if ctx.author.id != 674172109991313412:
     return
