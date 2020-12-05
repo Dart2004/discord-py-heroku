@@ -144,6 +144,7 @@ async def search(ctx,*arg):
 async def text(ctx,style,*,arg):
   embed=discord.Embed(title="sText")
   embed.set_image(url="https://flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script="+style.lower()+"-logo&doScale=true&scaleWidth=240&scaleHeight=120&backgroundRadio=2&backgroundPattern=Purple+Glow&text="+str(arg).replace(" ","%20"))
+  embed.set_footer(text=ctx.message.content)
   await ctx.send(embed=embed)
 @client.command(description="Send an informational message")
 async def modembed(ctx,*,arg):
