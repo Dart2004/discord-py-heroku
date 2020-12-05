@@ -9,7 +9,7 @@ from discord.utils import get
 intents = discord.Intents()
 intents.members = True
 intents.presences = True
-bilder=["https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Pastel+Stuff","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=orange+swiss+cheese%3F","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Blue+Bar"]
+bilder=["https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Warning!","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Pastel+Stuff","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=orange+swiss+cheese%3F","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Blue+Bar"]
 copies = 1
 client = importcommands.Bot(
     command_prefix="/",
