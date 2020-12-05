@@ -1,5 +1,5 @@
 import os
-
+from bilder import bilder
 from PIL import Image, ImageEnhance
 import discord.ext.commands as importcommands
 import discord
@@ -9,7 +9,7 @@ from discord.utils import get
 intents = discord.Intents()
 intents.members = True
 intents.presences = True
-bilder=["https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Warning!","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Pastel+Stuff","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=orange+swiss+cheese%3F","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Blue+Bar"]
+
 copies = 1
 client = importcommands.Bot(
     command_prefix="/",
@@ -31,7 +31,12 @@ helpmessages = {
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
     "about": ["***__About me__***", "h", "invite", "join", "count"]
 }
-
+async def add(ctx,url):
+  if ctx.author.id != 674172109991313412:
+    return
+  bilder.append(url)
+  bild=open("bilder.py","w")
+  bild.write("bilder="+str(bilder))
 @client.command()
 async def contrast(ctx,number, url):
   r = requests.get(url, allow_redirects=True)
@@ -104,8 +109,6 @@ def output(url):
   )
   if response.status_code == requests.codes.ok:
       # Store these if you want to be able to use the Smart Editor
-      image_id = response.headers['x-amz-meta-id']
-      image_secret = response.headers['x-amz-meta-secret']
 
       with open('clipped.png', 'wb') as out:
           out.write(response.content)
@@ -338,7 +341,7 @@ async def kick(ctx, *, user):
 @client.command(description="Ban someone")
 async def ban(ctx, *, username):
 	if ctx.author.guild_permissions.ban_members:
-		user=int(user.replace("<","").replace("@","").replace("!","").replace(">",""))
+		user=int(username.replace("<","").replace("@","").replace("!","").replace(">",""))
 		member=client.get_user(user)
 		await member.send("You got banned in " + ctx.guild.name)
 		await ctx.guild.ban(member)
@@ -757,7 +760,7 @@ async def rank(ctx):
     rank=requests.get("https://database.opensourcepy.repl.co/"+str(ctx.author.id)+".rank.html").text
     level=int(int(rank)/100)
     desc="You are level "+str(level)
-    embed=discord.Embed(description=msg.content,color=444444)
+    embed=discord.Embed(description=ctx.message.content,color=444444)
     await ctx.channel.send(embed=embed)
     await ctx.delete()
   except:
