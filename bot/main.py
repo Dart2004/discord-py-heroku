@@ -146,7 +146,7 @@ async def search(ctx,*arg):
 @client.command(description="Send a text")
 async def text(ctx,style,*,arg):
   embed=discord.Embed(title="sText")
-  embed.set_image(url=bilder[int(style)]+"&text="+str(arg).replace(" ","%20"))
+  embed.set_image(url=bilder[int(style)-1]+"&text="+str(arg).replace(" ","%20"))
   await ctx.send(embed=embed)
 @client.command(description="Send an informational message")
 async def modembed(ctx,*,arg):
