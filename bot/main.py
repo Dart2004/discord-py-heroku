@@ -9,6 +9,7 @@ from discord.utils import get
 intents = discord.Intents()
 intents.members = True
 intents.presences = True
+bilder=["https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Pastel+Stuff","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=orange+swiss+cheese%3F","https://eu0.flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script=comics-logo&doScale=true&scaleWidth=240&scaleHeight=120&fillTextType=1&fillTextPattern=Blue+Bar"]
 copies = 1
 client = importcommands.Bot(
     command_prefix="/",
@@ -30,6 +31,7 @@ helpmessages = {
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
     "about": ["***__About me__***", "h", "invite", "join", "count"]
 }
+
 @client.command()
 async def contrast(ctx,number, url):
   r = requests.get(url, allow_redirects=True)
@@ -142,9 +144,9 @@ async def search(ctx,*arg):
     output("https://th.bing.com/th/id/OIP.lVGMMepXbOaen9R7b_XBbQHaE8?pid=Api&q="+str(arg).replace(" ","%20")+"&rs=1&adlt=strict")
     await ctx.send(file=discord.File("clipped.png"))
 @client.command(description="Send a text")
-async def text(ctx,*,arg):
-  embed=discord.Embed(color=123456)
-  embed.set_image(url="https://flamingtext.com/net-fu/proxy_form.cgi?script=fun-logo&backgroundRadio=2&backgroundPattern=Leaves+6&fontname=fun&text=%20"+str(arg).replace(" ","%20")+"%20&_loc=generate&imageoutput=true")
+async def text(ctx,style,*,arg):
+  embed=discord.Embed(title="sText")
+  embed.set_image(url=bilder[int(style)]+"&text="+str(arg).replace(" ","%20"))
   await ctx.send(embed=embed)
 @client.command(description="Send an informational message")
 async def modembed(ctx,*,arg):
