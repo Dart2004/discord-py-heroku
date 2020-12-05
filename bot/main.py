@@ -1,5 +1,4 @@
 import os
-from bilder import bilder
 from PIL import Image, ImageEnhance
 import discord.ext.commands as importcommands
 import discord
@@ -31,13 +30,7 @@ helpmessages = {
     "giveaways": ["***__Giveaways__***", "rolls", "start", "roll", "reroll"],
     "about": ["***__About me__***", "h", "invite", "join", "count"]
 }
-@client.command()
-async def add(ctx,url):
-  if ctx.author.id != 674172109991313412:
-    return
-  bilder.append(url)
-  bild=open("bilder.py","w")
-  bild.write("bilder="+str(bilder))
+
 @client.command()
 async def contrast(ctx,number, url):
   r = requests.get(url, allow_redirects=True)
@@ -150,7 +143,7 @@ async def search(ctx,*arg):
 @client.command(description="Send a text")
 async def text(ctx,style,*,arg):
   embed=discord.Embed(title="sText")
-  embed.set_image(url=bilder[int(style)-1]+"&text="+str(arg).replace(" ","%20"))
+  embed.set_image(url="https://flamingtext.com/net-fu/proxy_form.cgi?imageoutput=true&script="+style.lower()+"-logo&doScale=true&scaleWidth=240&scaleHeight=120&backgroundRadio=2&backgroundPattern=Purple+Glow&text="+str(arg).replace(" ","%20"))
   await ctx.send(embed=embed)
 @client.command(description="Send an informational message")
 async def modembed(ctx,*,arg):
